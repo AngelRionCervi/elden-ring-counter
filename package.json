@@ -6,11 +6,13 @@
   "scripts": {
     "dev": "webpack serve",
     "build": "webpack",
-    "reset": "rm -rf ./build"
+    "reset:build": "rm -rf ./build",
+    "reset:install": "rm -rf node_modules && npm install"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@elonbezos/vengarljs": "0.0.49",
     "path": "^0.12.7"
   },
   "devDependencies": {
