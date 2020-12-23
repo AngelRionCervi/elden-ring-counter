@@ -1,5 +1,6 @@
 import { createComp, addGlobalCSS } from "@elonbezos/vengarljs";
 import videoBg from "./components/videoBg";
+import "./store";
 
 addGlobalCSS`
     body {
@@ -10,7 +11,15 @@ addGlobalCSS`
 
 createComp(
     "app-root",
-    ({ html, css }) => {
+    ({ html, css, useGlobal }) => {
+        const [, setScore] = useGlobal("msgScore");
+
+        fetch("/getMsgScore")
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                setScore(data);
+            });
 
         const globalContainer = css`
             position: fixed;

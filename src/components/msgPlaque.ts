@@ -1,7 +1,8 @@
 import { createComp } from "@elonbezos/vengarljs";
 
-export default createComp("msg-plaque", ({ html, css, props, useState }) => {
+export default createComp("msg-plaque", ({ html, css, props, useState, useGlobal }) => {
     const [getGoodPoorCount, setGoodPoorCount] = useState({ g: 0, p: 0 });
+    const [getMsgScore] = useGlobal("msgScore");
 
     const plaqueContainerClass = css`
         position: fixed;
@@ -25,7 +26,7 @@ export default createComp("msg-plaque", ({ html, css, props, useState }) => {
     `;
 
     const plaqueTextClass = css`
-        color: #d2d2d2;
+        color: #c9c9c9;
         font-size: ${window.innerWidth / 60}px;
         font-family: "Lora", serif;
     `;
@@ -60,7 +61,7 @@ export default createComp("msg-plaque", ({ html, css, props, useState }) => {
         grid-template-columns: 1fr 1fr;
         height: ${window.innerWidth / 60}px;
         width: 50%;
-        color: #d2d2d2;
+        color: #c9c9c9;
         font-size: ${window.innerWidth / 60}px;
         font-family: "Lora", serif;
     `;
@@ -71,17 +72,19 @@ export default createComp("msg-plaque", ({ html, css, props, useState }) => {
         grid-gap: 5%;
     `;
 
-    const incGood = () => {
+    const inc = (side: string) => {
+        if (localStorage.getItem("voted")) return;
+        fetch(`inc${side}`)
+            .catch((err: any) => {
+                console.log(err);
+            });
         const lastCount = getGoodPoorCount();
-        setGoodPoorCount({ g: lastCount.g + 1, p: lastCount.p });
+        setGoodPoorCount({
+            g: lastCount.g + (side === "good" ? 1 : 0),
+            p: lastCount.p + (side === "poor" ? 1 : 0),
+        });
+        localStorage.setItem("voted", "true");
     };
-
-    const incPoor = () => {
-        const lastCount = getGoodPoorCount();
-        setGoodPoorCount({ g: lastCount.g, p: lastCount.p + 1 });
-    };
-
-    console.log(props);
 
     return () => html`
         <div class=${plaqueContainerClass}>
@@ -91,13 +94,19 @@ export default createComp("msg-plaque", ({ html, css, props, useState }) => {
                     <p class=${plaqueTextClass}>Time required ahead</p>
                 </div>
                 <div class=${goodPoorRow}>
-                    <span class=${row}><span>Good</span><span>${getGoodPoorCount().g}</span></span>
-                    <span class=${row}><span>Poor</span><span>${getGoodPoorCount().p}</span></span>
+                    <span class=${row}
+                        ><span>Good</span
+                        ><span>${getMsgScore().good + getGoodPoorCount().g}</span></span
+                    >
+                    <span class=${row}
+                        ><span>Poor</span
+                        ><span>${getMsgScore().poor + getGoodPoorCount().p}</span></span
+                    >
                 </div>
                 <div class=${plaqueButtonRow}>
                     <button @click=${() => props.close()} class="${btn}"></button>
-                    <button @click=${incGood} class="${btn}"></button>
-                    <button @click=${incPoor} class="${btn}"></button>
+                    <button @click=${() => inc("good")} class="${btn}"></button>
+                    <button @click=${() => inc("poor")} class="${btn}"></button>
                 </div>
             </div>
         </div>
