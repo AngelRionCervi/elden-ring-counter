@@ -12,6 +12,7 @@ export default createComp("player-msg", ({ html, css, props, useState }) => {
     const msgContainerClass = css`
         position: fixed;
         perspective: 40px;
+        cursor: pointer;
     `;
 
     const dim = props.getVideoBgDim();
@@ -28,7 +29,9 @@ export default createComp("player-msg", ({ html, css, props, useState }) => {
             </div>
             ${(() => {
                 if (isPanel()) {
-                    return html`<${msgPlaque} .props=${{dim}}></${msgPlaque}>`;
+                    return html`<${msgPlaque} .props=${{
+                        close: () => setPanel(false),
+                    }}></${msgPlaque}>`;
                 }
             })()}`;
     };
