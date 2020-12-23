@@ -9,8 +9,7 @@ module.exports = [
         entry: "./src/main.ts",
         target: "web",
         output: {
-            path: path.resolve(__dirname, "build"),
-            filename: "js/bundle.js",
+            filename: "js/main.js",
         },
         devServer: {
             port: 8088,
@@ -55,8 +54,7 @@ module.exports = [
         target: "node",
         externals: [nodeExternals()],
         output: {
-            path: path.resolve(__dirname, "build/server/js"),
-            filename: "bundle.js",
+            filename: "server.js",
         },
     },
 ];

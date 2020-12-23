@@ -1,5 +1,6 @@
 import express from "express";
 import { Request, Response } from "express";
+import path from "path";
 import * as fs from "fs";
 
 const app = express();
@@ -16,9 +17,15 @@ function saveJSON(obj: any) {
     });
 }
 
+app.use(express.static(__dirname));
+
+app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "index.html"));
+});
+
 app.get("/getMsgScore", (req: Request, res: Response) => {
     return res.json(msgScore);
-})
+});
 
 app.get("/incgood", (req: Request, res: Response) => {
     msgScore.good++;
