@@ -5,7 +5,7 @@ import * as fs from "fs";
 
 const app = express();
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 const msgScore = JSON.parse(fs.readFileSync("./src/server/votes.json", { encoding: "utf-8" }));
 
