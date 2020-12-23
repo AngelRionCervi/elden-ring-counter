@@ -8,9 +8,10 @@
     "start": "node ./dist/server.js",
     "server": "node ./dist/server.js",
     "build": "webpack",
+    "build:p": "webpack --mode=production",
     "reset:build": "rm -rf ./build",
     "reset:install": "rm -rf node_modules && npm install",
-    "heroku-postbuild": "webpack -p"
+    "heroku-postbuild": "webpack --mode=production"
   },
   "author": "",
   "license": "ISC",
