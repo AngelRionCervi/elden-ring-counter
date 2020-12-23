@@ -1,6 +1,5 @@
 import { createComp, addGlobalCSS } from "@elonbezos/vengarljs";
 import videoBg from "./components/videoBg";
-import ytIframe from "./components/ytIframe";
 
 addGlobalCSS`
     body {
@@ -12,6 +11,7 @@ addGlobalCSS`
 createComp(
     "app-root",
     ({ html, css }) => {
+
         const globalContainer = css`
             position: fixed;
             bottom: 0;
@@ -20,7 +20,7 @@ createComp(
             height: 100vh;
         `;
 
-        return () => html`<div class=${globalContainer}><${videoBg}></${videoBg}><${ytIframe}></${ytIframe}></div>`;
+        return () => html`<div class=${globalContainer}><${videoBg}></${videoBg}></div>`;
     },
     true
 );
