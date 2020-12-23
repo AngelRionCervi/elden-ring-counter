@@ -8,7 +8,8 @@
     "server": "node ./build/server/js/bundle.js",
     "build": "npm run reset:build && webpack",
     "reset:build": "rm -rf ./build",
-    "reset:install": "rm -rf node_modules && npm install"
+    "reset:install": "rm -rf node_modules && npm install",
+    "heroku-postbuild": "webpack -p"
   },
   "author": "",
   "license": "ISC",
