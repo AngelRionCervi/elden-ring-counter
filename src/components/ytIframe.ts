@@ -8,7 +8,7 @@ export default createComp("yt-iframe", ({ html, css, props }) => {
     `;
 
     const iframeClass = css`
-        transform: rotateX(0deg) rotateY(-1deg) rotateZ(-1deg);
+        transform: rotateX(0deg) rotateY(-1deg) rotateZ(-0deg);
     `;
 
     return () => {
