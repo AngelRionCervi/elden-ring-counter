@@ -36,7 +36,6 @@ createComp(
         fetch("/getMsgScore")
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 setScore(data);
             });
 

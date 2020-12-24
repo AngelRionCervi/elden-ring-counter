@@ -9,12 +9,12 @@ export default createComp("msg-plaque", ({ html, css, props, useState, useGlobal
         width: ${window.innerWidth}px;
         height: auto;
         top: ${window.innerHeight / 9}px;
+        z-index: 10;
     `;
 
     const plaqueClass = css`
         position: relative;
         width: 60%;
-
         margin: 0 auto;
         box-sizing: border-box;
     `;
@@ -74,7 +74,7 @@ export default createComp("msg-plaque", ({ html, css, props, useState, useGlobal
 
     const inc = (side: string) => {
         if (localStorage.getItem("voted")) return;
-        fetch(`inc${side}`)
+        fetch(`/inc${side}`)
             .catch((err: any) => {
                 console.log(err);
             });
