@@ -9,6 +9,10 @@ addGlobalCSS`
         background-color: black;
     }
 
+    * {
+        overflow: hidden;
+    }
+
     @keyframes glow {
         from {
           filter: drop-shadow(0px 0px 0px #EF4908);
