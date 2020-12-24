@@ -3,7 +3,7 @@ import { createComp } from "@elonbezos/vengarljs";
 export default createComp("yt-iframe", ({ html, css, props }) => {
 
     const containerClass = css`
-        position: fixed;
+        position: absolute;
         perspective: 35px;
     `;
 

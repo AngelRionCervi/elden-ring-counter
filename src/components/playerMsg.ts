@@ -11,7 +11,7 @@ export default createComp("player-msg", ({ html, css, props, useState }) => {
     `;
 
     const msgContainerClass = css`
-        position: fixed;
+        position: absolute;
         perspective: 40px;
         cursor: pointer;
     `;

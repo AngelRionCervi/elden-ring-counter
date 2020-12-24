@@ -22,7 +22,7 @@ export default createComp("image-layer", ({ html, css, props }) => {
         width: ${dim.w / 50}px;
         top: ${dim.h / 1.1}px;
         left: ${dim.w / 1.06}px;
-        position: fixed;
+        position: absolute;
         perspective: 40px;
         cursor: pointer;
         opacity: 0.5;
