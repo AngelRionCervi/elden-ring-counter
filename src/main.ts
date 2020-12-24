@@ -6,6 +6,25 @@ addGlobalCSS`
     body {
         margin: 0;
         padding: 0;
+        background-color: black;
+    }
+
+    @keyframes glow {
+        from {
+          filter: drop-shadow(0px 0px 0px #EF4908);
+        }
+        to {
+            filter: drop-shadow(0px 0px 10px #EF4908);
+        }
+    }
+
+    @keyframes githubGlow {
+        from {
+          filter: drop-shadow(0px 0px 0px #fff);
+        }
+        to {
+            filter: drop-shadow(0px 0px 5px #fff);
+        }
     }
 `;
 
@@ -17,7 +36,7 @@ createComp(
         fetch("/getMsgScore")
             .then((res) => res.json())
             .then((data) => {
-                console.log(data)
+                console.log(data);
                 setScore(data);
             });
 

@@ -1,9 +1,10 @@
 import { createComp } from "@elonbezos/vengarljs";
 import ytIframe from "./ytIframe";
 import playerMsg from "./playerMsg";
+import christmasStuff from "./christmasStuff";
+import imageLayer from "./imageLayer";
 
 export default createComp("video-bg", ({ html, css, query, useState }) => {
-
     const bgVideoClass = css`
         width: ${window.innerWidth}px;
     `;
@@ -16,8 +17,15 @@ export default createComp("video-bg", ({ html, css, query, useState }) => {
     return () =>
         html`<video class=${bgVideoClass} src="video/bg4Webm.webm" autoplay loop muted></video><${ytIframe} .props=${{
             getVideoBgDim,
-        }}></${ytIframe}><${playerMsg} .props=${{
+        }}></${ytIframe}>
+        <${playerMsg} .props=${{
             getVideoBgDim,
         }}></${playerMsg}>
+        <${christmasStuff} .props=${{
+            getVideoBgDim,
+        }} ></${christmasStuff}>
+        <${imageLayer} .props=${{
+            getVideoBgDim,
+        }} ></${imageLayer}>
         `;
 });

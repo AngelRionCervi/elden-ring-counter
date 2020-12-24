@@ -7,6 +7,7 @@ export default createComp("player-msg", ({ html, css, props, useState }) => {
     const msgClass = css`
         width: 100%;
         transform: rotateX(6deg);
+        animation: glow 1s ease-in-out infinite alternate;
     `;
 
     const msgContainerClass = css`
