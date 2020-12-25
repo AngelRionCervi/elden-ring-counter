@@ -6,7 +6,7 @@ const app = express();
 
 const PORT = process.env.PORT || 4000;
 
-const msgScore = JSON.parse(fs.readFileSync("./src/server/votes.json", { encoding: "utf-8" }));
+const getMsgScore = () => JSON.parse(fs.readFileSync("./src/server/votes.json", { encoding: "utf-8" }));
 
 function saveJSON(obj: any) {
     fs.writeFile("./src/server/votes.json", JSON.stringify(obj), (err) => {
@@ -23,16 +23,18 @@ app.get("/", (req, res) => {
 });
 
 app.get("/getMsgScore", (req, res) => {
-    return res.json(msgScore);
+    return res.json(getMsgScore());
 });
 
 app.get("/incgood", (req, res) => {
+    const msgScore = getMsgScore();
     msgScore.good++;
     saveJSON(msgScore);
     return res.sendStatus(200);
 });
 
 app.get("/incpoor", (req, res) => {
+    const msgScore = getMsgScore();
     msgScore.poor++;
     saveJSON(msgScore);
     return res.sendStatus(200);
